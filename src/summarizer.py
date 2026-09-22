@@ -113,7 +113,7 @@ def score_papers(
             for i, p in enumerate(batch)
         )
 
-        prompt = f"""You are a research paper curator. Score each paper's relevance (0-10) to the BEST matching research interest below. Only assign a score above 0 if the paper is clearly relevant to one of these specific interests.
+        prompt = f"""You are a research paper curator. Score each paper's relevance (0-10) to the BEST matching research interest below. Evaluate relevance based on the paper's underlying objectives, methods, study system, applications, outcomes, and implications rather than exact keyword overlap. A paper may be highly relevant even if it does not use the exact terminology contained in the research interest description. Consider conceptual and interdisciplinary relevance, including connections to biodiversity conservation, restoration, fisheries, marine ecosystems, climate adaptation, plastic pollution, environmental monitoring, environmental management, and sustainability where applicable. Only assign a score above 0 if the paper is meaningfully relevant to one of these specific interests.
 
 RESEARCH INTERESTS:
 {topic_block}
@@ -176,7 +176,7 @@ Title: {p.title}
 Abstract: {(p.abstract or 'No abstract available')[:500]}
 """
 
-        prompt = f"""For each paper below, write 2-3 sentences explaining why it is interesting and relevant to the specified research interest. Be specific about the connection. Address the reader directly as "you".
+        prompt = f"""For each paper below, write 2-3 concise sentences describing the paper and its relevance to the specified research interest. Use a neutral, matter-of-fact scientific tone similar to an annotated bibliography or literature review. Focus on: the main topic or contribution of the paper, the aspects that align with the research interest, and relevant methods, findings, datasets, study systems, or applications. Do not use promotional, enthusiastic, or evaluative language, speculate about potential reader interest, or make subjective judgements. Write in the third person and describe the connection to the research interest directly.
 
 {papers_block}
 
